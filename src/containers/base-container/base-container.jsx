@@ -1,7 +1,7 @@
 
 import React from 'react';
-import './base-container.css';
-import CardContainer from '../card-container/card-container'
+import './base-container.css'
+import Homepage from '../../pages/Homepage'
 export default class BaseContainer extends React.Component {
 
     render() {
@@ -11,7 +11,7 @@ export default class BaseContainer extends React.Component {
             <div className="base-container">
                 <div className="top-row">
                     {top}
-                    <CardContainer />
+                    <Homepage />
                 </div>
 
             </div>
