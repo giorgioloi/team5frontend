@@ -1,69 +1,37 @@
-import React from 'react';
 import './Homepage.css';
 import CardContainer from '../containers/card-container/card-container'
 import { Container, Row, Col } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
+import './Homepage.css';
+//import BaseContainer from '../containers/base-container/base-container'
+//import Header from '../containers/header/header';
+import axios from 'axios-https-proxy-fix';
+//const cheerio = require('cheerio');
 
-export default class Homepage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      articles:
-        [{
-          id: 0,
-          title: "Hello blog 1",
-          body: "Silent sir say desire fat him letter.",
-        },
-        {
-          id: 1,
-          title: "Hello blog 2",
-          body: "Silent sir say desire fat him letter.",
-        },
-        {
-          id: 2,
-          title: "Hello blog 3",
-          body: "Silent sir say desire fat him letter.",
+function Homepage() {
+  //const url = 'https://jsonplaceholder.typicode.com/users'
+  const url = 'http://localhost:3000/articles'
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios.get(url).then(json => setData(json.data)).catch(console.error)
+  }, [])
 
-        },
-        {
-          id: 3,
-          title: "Hello blog 4",
-          body: "Silent sir say desire fat him letter.",
-
-        },
-        {
-          id: 4,
-          title: "Hello blog 5",
-          body: "Silent sir say desire fat him letter.",
-
-        },
-        {
-          id: "5",
-          title: "Hello blog 6",
-          body: "Silent sir say desire fat him letter.",
-
-        }
-        ],
-    }
-  }
-
-  render() {
-    let articles = this.state.articles.map(article => {
-      return (
-        <Col sm="4">
-          <CardContainer key={article.id} article={article} />
-        </Col>
-      )
-    })
-
-
+  let articles = data.map(article => {
+    article.body = article.body.substring(0, 200)
     return (
-      <Container fluid>
-        <Row>
-          {articles}
-        </Row>
-      </Container>
-
+      <Col>
+        <CardContainer key={article._id} article={article} />
+      </Col>
     )
-  }
+  })
 
+  return (
+    <Container fluid>
+      <Row>
+        {articles}
+      </Row>
+    </Container>
+  );
 }
+
+export default Homepage;

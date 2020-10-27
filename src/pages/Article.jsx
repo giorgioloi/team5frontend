@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Article.css';
+//import BaseContainer from '../containers/base-container/base-container'
+//import Header from '../containers/header/header';
+import axios from 'axios-https-proxy-fix';
+//const cheerio = require('cheerio');
 
-import BaseContainer from '../containers/base-container/base-container'
+function Article() {
+  //const url = 'https://jsonplaceholder.typicode.com/users'
+  const url = 'http://localhost:3000/articles'
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios.get(url).then(json => setData(json.data)).catch(console.error)
+  }, [])
 
-import Header from '../containers/header/header';
-
-export default class Article extends React.Component {
-  render() {
-    return (
-        <BaseContainer top={<Header />} />
-    )
-  }
+  return (
+    <ul>
+      {data.map(item => (
+        <li key={item._id}>
+          <h2>{item.title}</h2>
+          <p>{item.body}</p>
+        </li>
+      ))}
+    </ul>
+  );
 }
+
+export default Article;

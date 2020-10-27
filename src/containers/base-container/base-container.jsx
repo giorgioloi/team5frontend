@@ -2,6 +2,8 @@
 import React from 'react';
 import './base-container.css'
 import Homepage from '../../pages/Homepage'
+//import Article from '../../pages/Article'
+import { Container } from 'react-bootstrap';
 export default class BaseContainer extends React.Component {
 
     render() {
@@ -11,7 +13,9 @@ export default class BaseContainer extends React.Component {
             <div className="base-container">
                 <div className="top-row">
                     {top}
-                    <Homepage />
+                    <Container>
+                        <Homepage />
+                    </Container>
                 </div>
 
             </div>
