@@ -1,3 +1,5 @@
+import CardContainer from '../containers/card-container/card-container'
+import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react';
 import './Article.css';
 //import BaseContainer from '../containers/base-container/base-container'
@@ -5,23 +7,25 @@ import './Article.css';
 import axios from 'axios-https-proxy-fix';
 //const cheerio = require('cheerio');
 
-function Article() {
-  //const url = 'https://jsonplaceholder.typicode.com/users'
-  const url = 'http://localhost:3000/articles'
-  const [data, setData] = useState([])
+function Article(props) {
+  const url = 'http://localhost:3000/articles/' + props.location.state.id
+  const [data, setData] = useState({})
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
-    axios.get(url).then(json => setData(json.data)).catch(console.error)
-  }, [])
+    console.log("ciao");
+    if (loading)
+      axios.get(url).then(json => setData(json.data)).then(setLoading(false)).catch(console.error)
+  }, [url, setLoading, loading])
 
+  let article = data
   return (
-    <ul>
-      {data.map(item => (
-        <li key={item._id}>
-          <h2>{item.title}</h2>
-          <p>{item.body}</p>
-        </li>
-      ))}
-    </ul>
+    <Container fluid>
+      <Row>
+        <Col>
+          <CardContainer key={article._id} article={article} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

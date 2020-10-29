@@ -1,9 +1,8 @@
-import './Homepage.css';
 import CardContainer from '../containers/card-container/card-container'
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react';
 import './Homepage.css';
-//import BaseContainer from '../containers/base-container/base-container'
+
 //import Header from '../containers/header/header';
 import axios from 'axios-https-proxy-fix';
 //const cheerio = require('cheerio');
@@ -18,6 +17,7 @@ function Homepage() {
 
   let articles = data.map(article => {
     article.body = article.body.substring(0, 200)
+    console.log("Homepage", article);
     return (
       <Col>
         <CardContainer key={article._id} article={article} />

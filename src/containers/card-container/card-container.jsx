@@ -1,13 +1,23 @@
 import React from 'react';
 import './card-container.css';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button'
-
+import Article from '../../pages/Article'
+import {
+    Switch,
+    Redirect,
+    Link
+} from "react-router-dom";
 
 export default class CardContainer extends React.Component {
 
     render() {
         let { _id, title, body, imgurl, tag, author } = this.props.article;
+        const location = {
+            pathname: "/articles/" + _id,
+            state: {
+                id: _id
+            }
+        };
         return (
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={imgurl} />
@@ -19,9 +29,14 @@ export default class CardContainer extends React.Component {
                     <footer className="blockquote-footer">
                         Autore: {author}, Tag: {tag}
                     </footer>
-                    <Button variant="primary" href={_id}>Leggi l'articolo completo</Button>
+
+                    <Link to={location} >Clicca qui!</Link>
+
                 </Card.Body>
             </Card>
+
+
+
         )
     }
 

@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
+import Article from './pages/Article'
+import {
+  BrowserRouter,
+  Route,
+} from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Route path="/" component={App} />
+      <Route path="/articles/:id" component={Article} />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
