@@ -17,7 +17,6 @@ function Homepage() {
 
   let articles = data.map(article => {
     article.body = article.body.substring(0, 200)
-    console.log("Homepage", article);
     return (
       <Col>
         <CardContainer key={article._id} article={article} />

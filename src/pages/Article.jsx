@@ -17,12 +17,23 @@ function Article(props) {
       axios.get(url).then(json => setData(json.data)).then(setLoading(false)).catch(console.error)
   }, [url, setLoading, loading])
 
-  let article = data
+  // console.log(data);
+  // let comments = data.map(comment => {
+  //   return (
+  //     <div className="commentsection">
+  //       <h5>{comment.comments.nickname}</h5>
+  //       <p>{comment.comments.body}</p>
+  //     </div>
+  //   )
+  // })
+
+
   return (
     <Container fluid>
       <Row>
         <Col>
-          <CardContainer key={article._id} article={article} />
+          <CardContainer key={data._id} article={data} />
+
         </Col>
       </Row>
     </Container>
