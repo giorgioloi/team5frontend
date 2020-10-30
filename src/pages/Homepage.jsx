@@ -9,7 +9,7 @@ import axios from 'axios-https-proxy-fix';
 
 function Homepage() {
   //const url = 'https://jsonplaceholder.typicode.com/users'
-  const url = 'http://localhost:3000/articles'
+  const url = 'https://team5blogbackend.herokuapp.com/articles'
   const [data, setData] = useState([])
   useEffect(() => {
     axios.get(url).then(json => setData(json.data)).catch(console.error)

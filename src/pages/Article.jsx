@@ -8,7 +8,7 @@ import axios from 'axios-https-proxy-fix';
 //const cheerio = require('cheerio');
 
 function Article(props) {
-  const url = 'http://localhost:3000/articles/' + props.location.state.id
+  const url = 'https://team5blogbackend.herokuapp.com/articles/' + props.location.state.id
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(true)
   useEffect(() => {
