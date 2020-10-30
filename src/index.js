@@ -4,7 +4,10 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import Article from './pages/Article'
+import Header from './containers/header/header'
+import BaseContainer from './containers/base-container/base-container'
 import {
+  Switch,
   BrowserRouter,
   Route,
 } from "react-router-dom";
@@ -13,8 +16,13 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Route path="/" component={App} />
-      <Route path="/articles/:id" component={Article} />
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/articles/:id">
+          <BaseContainer top={<Header />}
+            content={<Article />} />
+        </ Route>
+      </Switch>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

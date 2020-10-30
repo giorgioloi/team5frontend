@@ -8,7 +8,6 @@ import axios from 'axios-https-proxy-fix';
 //const cheerio = require('cheerio');
 
 function Homepage() {
-  //const url = 'https://jsonplaceholder.typicode.com/users'
   const url = 'https://team5blogbackend.herokuapp.com/articles'
   const [data, setData] = useState([])
   useEffect(() => {

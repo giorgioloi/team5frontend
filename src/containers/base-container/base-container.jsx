@@ -1,6 +1,5 @@
 import React from 'react';
 import './base-container.css'
-//import Article from '../../pages/Article'
 export default class BaseContainer extends React.Component {
 
     render() {

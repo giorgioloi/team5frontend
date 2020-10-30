@@ -1,14 +1,14 @@
 import CardContainer from '../containers/card-container/card-container'
-import { Container, Row, Col } from 'react-bootstrap'
-import React, { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap'
+import React, { useState, useEffect, } from 'react';
 import './Article.css';
-//import BaseContainer from '../containers/base-container/base-container'
-//import Header from '../containers/header/header';
 import axios from 'axios-https-proxy-fix';
-//const cheerio = require('cheerio');
+import { useLocation } from 'react-router-dom'
 
 function Article(props) {
-  const url = 'https://team5blogbackend.herokuapp.com/articles/' + props.location.state.id
+  const location = useLocation()
+  console.log(location);
+  const url = 'https://team5blogbackend.herokuapp.com/articles/' + location.state.id
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -27,15 +27,9 @@ function Article(props) {
   //   )
   // })
 
-
   return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <CardContainer key={data._id} article={data} />
-
-        </Col>
-      </Row>
+    <Container>
+      <CardContainer key={data._id} article={data} />
     </Container>
   );
 }
